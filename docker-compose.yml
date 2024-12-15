@@ -6,7 +6,7 @@ services:
     ports:
       - "80:80"
     environment:
-     - REACT_APP_BACKEND_URL=http://3.85.117.95:5000/api
+     - REACT_APP_BACKEND_URL=http://54.145.107.182:5000/api
     
 
   backend:
@@ -16,8 +16,8 @@ services:
       - "5000:5000"
     environment:
       - DB_USER=postgres      # Replace with your AWS RDS username
-      - DB_PASSWORD=admin  # Replace with your AWS RDS password
+      - DB_PASSWORD=admin1812  # Replace with your AWS RDS password
       - DB_NAME=todolist     # Replace with your AWS RDS database name
-      - DB_HOST=database1.ct6q08mueq75.us-east-1.rds.amazonaws.com      # Replace with your AWS RDS endpoint (e.g., db-instance-name.region.rds.amazonaws.com)
+      - DB_HOST=database-2.ct6q08mueq75.us-east-1.rds.amazonaws.com      # Replace with your AWS RDS endpoint (e.g., db-instance-name.region.rds.amazonaws.com)
       - DB_PORT=5432
   # No 'db' service since we're using AWS RDS now.
