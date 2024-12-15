@@ -18,6 +18,6 @@ services:
       - DB_USER=postgres      # Replace with your AWS RDS username
       - DB_PASSWORD=admin1812  # Replace with your AWS RDS password
       - DB_NAME=todolist     # Replace with your AWS RDS database name
-      - DB_HOST=database-1.ct6q08mueq75.us-east-1.rds.amazonaws.com      # Replace with your AWS RDS endpoint (e.g., db-instance-name.region.rds.amazonaws.com)
+      - DB_HOST=database-2.ct6q08mueq75.us-east-1.rds.amazonaws.com      # Replace with your AWS RDS endpoint (e.g., db-instance-name.region.rds.amazonaws.com)
       - DB_PORT=5432
   # No 'db' service since we're using AWS RDS now.
