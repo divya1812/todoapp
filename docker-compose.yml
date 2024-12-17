@@ -1,14 +1,5 @@
 version: '3.8'
 services:
-  frontend:
-    build:
-      context: ./frontend
-    ports:
-      - "80:80"
-    environment:
-     - REACT_APP_BACKEND_URL=http://54.209.170.106:5000/api
-    
-
   backend:
     build:
       context: ./backend
@@ -21,3 +12,14 @@ services:
       - DB_HOST=myrdsinstance.ct6q08mueq75.us-east-1.rds.amazonaws.com      # Replace with your AWS RDS endpoint (e.g., db-instance-name.region.rds.amazonaws.com)
       - DB_PORT=5432
   # No 'db' service since we're using AWS RDS now.
+ 
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    environment:
+     - REACT_APP_BACKEND_URL=http://54.209.170.106:5000/api
+    
+
+  
