@@ -16,11 +16,11 @@ pipeline {
             steps {
                 script {
                     // Stop existing containers
-                    sh 'docker-compose down || true'
+                    sh 'sudo docker-compose down || true'
                     
                     // Pull updated code and build
-                    sh 'docker-compose pull'
-                    sh 'docker-compose up -d --build'
+                    sh 'sudo docker-compose pull'
+                    sh 'sudo docker-compose up -d --build'
                 }
             }
         }
