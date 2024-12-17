@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>My Todos List</h1>
+      <h1>My Todos List ${process.env.REACT_APP_BACKEND_URL}</h1>
       <AddTodo fetchTodos={fetchTodos} />
       <TodoList todos={todos} fetchTodos={fetchTodos} />
     </div>
