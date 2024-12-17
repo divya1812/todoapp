@@ -21,7 +21,7 @@ pipeline {
                     sh '''
                     echo "Loading Frontend Environment..."
                     export $(cat $FRONTEND_ENV | xargs)
-                    echo "Frontend API URL: $REACT_APP_API_URL"
+                    echo "Frontend API URL: $REACT_APP_BACKEND_URL"
                     '''
 
                     // Load backend environment variables
