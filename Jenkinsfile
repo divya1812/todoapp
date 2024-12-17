@@ -29,6 +29,7 @@ pipeline {
                     echo "Loading Backend Environment..."
                     export $(cat $BACKEND_ENV | xargs)
                     echo "DB_HOST: $DB_HOST"
+                    echo "DB_PORT: $DB_PORT"
                     '''
                 }
             }
