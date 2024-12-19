@@ -14,23 +14,32 @@ pipeline {
             }
         }
 
+         stage('Prepare Environment') {
+            steps {
+                sh 'cp $FRONTEND_ENV ./frontend/frontend.env'
+                sh 'cp $BACKEND_ENV ./backend/backend.env'
+            }
+        }
+
         stage('Load Environment Variables') {
             steps {
-              withCredentials([
-                    file(credentialsId: 'frontend-env', variable: 'FRONTEND_ENV_FILE'),
-                    file(credentialsId: 'backend-env', variable: 'BACKEND_ENV_FILE')
-                ]) {
+               script {
+                    // Load frontend environment variables
                     sh '''
                     echo "Loading Frontend Environment..."
-                    cp $FRONTEND_ENV_FILE ./frontend/frontend.env
+                    set -a
+                    source ./frontend/frontend.env
+                    set +a
                     echo "REACT_APP_BACKEND_URL: $REACT_APP_BACKEND_URL"
-                    echo "Frontend Environment Loaded"
+                    '''
 
+                    // Load backend environment variables
+                    sh '''
                     echo "Loading Backend Environment..."
-                    cp $BACKEND_ENV_FILE ./backend/backend.env
+                    set -a
+                    source ./backend/backend.env
+                    set +a
                     echo "DB_HOST: $DB_HOST"
-                    echo "DB_PORT: $DB_PORT"
-                    echo "Backend Environment Loaded"
                     '''
                 }
 
