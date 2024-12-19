@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        // FRONTEND_ENV = credentials('frontend-env')
-        // BACKEND_ENV = credentials('backend-env')
+        FRONTEND_ENV = credentials('frontend-env')
+        BACKEND_ENV = credentials('backend-env')
         DOCKER_COMPOSE_FILE = 'docker-compose.yml'
     }
 
@@ -16,27 +16,23 @@ pipeline {
 
         stage('Load Environment Variables') {
             steps {
-                script {
-                    echo 'Loading environment variables...'
-                withCredentials([
+              withCredentials([
                     file(credentialsId: 'frontend-env', variable: 'FRONTEND_ENV_FILE'),
                     file(credentialsId: 'backend-env', variable: 'BACKEND_ENV_FILE')
                 ]) {
-                    // Source the .env files for frontend and backend
                     sh '''
-                    echo "Loading Frontend Environment Variables..."
-                    set -a
-                    source $FRONTEND_ENV_FILE
-                    set +a
-                    echo "Frontend API URL: $REACT_APP_BACKEND_URL"
+                    echo "Loading Frontend Environment..."
+                    cp $FRONTEND_ENV_FILE ./frontend/frontend.env
+                    echo "REACT_APP_BACKEND_URL: $REACT_APP_BACKEND_URL"
+                    echo "Frontend Environment Loaded"
 
-                    echo "Loading Backend Environment Variables..."
-                    set -a
-                    source $BACKEND_ENV_FILE
-                    set +a
-                    echo "Backend DB Host: $DB_HOST"
+                    echo "Loading Backend Environment..."
+                    cp $BACKEND_ENV_FILE ./backend/backend.env
+                    echo "DB_HOST: $DB_HOST"
+                    echo "DB_PORT: $DB_PORT"
+                    echo "Backend Environment Loaded"
                     '''
-
+                }
 
                 
                     // // Load frontend environment variables
@@ -53,7 +49,7 @@ pipeline {
                     // echo "DB_HOST: $DB_HOST"
                     // echo "DB_PORT: $DB_PORT"
                     // '''
-                }
+                
             }
         }
 
