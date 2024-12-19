@@ -14,50 +14,25 @@ pipeline {
             }
         }
 
-         stage('Prepare Environment') {
-            steps {
-                sh 'sudo -S cp $FRONTEND_ENV ./frontend/frontend.env'
-                sh 'sudo -S cp $BACKEND_ENV ./backend/backend.env'
-            }
-        }
 
         stage('Load Environment Variables') {
             steps {
                script {
+                
                     // Load frontend environment variables
                     sh '''
                     echo "Loading Frontend Environment..."
-                    set -a
-                    source ./frontend/frontend.env
-                    set +a
+                    export $(cat $FRONTEND_ENV | xargs)
                     echo "REACT_APP_BACKEND_URL: $REACT_APP_BACKEND_URL"
                     '''
 
                     // Load backend environment variables
                     sh '''
                     echo "Loading Backend Environment..."
-                    set -a
-                    source ./backend/backend.env
-                    set +a
+                    export $(cat $BACKEND_ENV | xargs)
                     echo "DB_HOST: $DB_HOST"
+                    echo "DB_PORT: $DB_PORT"
                     '''
-                }
-
-                
-                    // // Load frontend environment variables
-                    // sh '''
-                    // echo "Loading Frontend Environment..."
-                    // export $(cat $FRONTEND_ENV | xargs)
-                    // echo "REACT_APP_BACKEND_URL: $REACT_APP_BACKEND_URL"
-                    // '''
-
-                    // // Load backend environment variables
-                    // sh '''
-                    // echo "Loading Backend Environment..."
-                    // export $(cat $BACKEND_ENV | xargs)
-                    // echo "DB_HOST: $DB_HOST"
-                    // echo "DB_PORT: $DB_PORT"
-                    // '''
                 
             }
         }
