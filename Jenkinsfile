@@ -16,8 +16,8 @@ pipeline {
 
          stage('Prepare Environment') {
             steps {
-                sh 'sudo cp $FRONTEND_ENV ./frontend/frontend.env'
-                sh 'sudo cp $BACKEND_ENV ./backend/backend.env'
+                sh 'sudo -S cp $FRONTEND_ENV ./frontend/frontend.env'
+                sh 'sudo -S cp $BACKEND_ENV ./backend/backend.env'
             }
         }
 
