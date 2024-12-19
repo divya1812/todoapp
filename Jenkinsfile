@@ -46,7 +46,7 @@ pipeline {
                     sh 'docker-compose up -d --build'
 
                     // Optionally, clean up unused Docker images/volumes
-                    sh 'docker system prune -f || true'
+                    // sh 'docker system prune -f || true'
                 }
             }
         }
