@@ -8,11 +8,13 @@ const TodoList = ({ todos, fetchTodos }) => {
   };
 
   return (
-    <ul>
+    <ul className="todo-list">
       {todos.map((todo) => (
-        <li key={todo.id}>
-          {todo.description}
-          <button onClick={() => handleDelete(todo.id)}>Delete</button>
+        <li key={todo.id} className="todo-item">
+          <span className="todo-text">{todo.description}</span>
+          <button className="delete-button" onClick={() => handleDelete(todo.id)}>
+            Delete
+          </button>
         </li>
       ))}
     </ul>

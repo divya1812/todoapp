@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
-
+import './styles.css';
 const App = () => {
   const [todos, setTodos] = useState([]);
 
@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>My Todo List</h1>
+      <h1>Todo List</h1>
       <AddTodo fetchTodos={fetchTodos} />
       <TodoList todos={todos} fetchTodos={fetchTodos} />
     </div>

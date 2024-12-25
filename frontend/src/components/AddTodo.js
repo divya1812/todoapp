@@ -14,14 +14,15 @@ const AddTodo = ({ fetchTodos }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="add-todo-form" onSubmit={handleSubmit}>
       <input
         type="text"
+        className="add-todo-input"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Add a todo"
       />
-      <button type="submit">Add</button>
+      <button type="submit" className="add-todo-button">Add</button>
     </form>
   );
 };
